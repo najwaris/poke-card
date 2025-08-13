@@ -81,6 +81,15 @@ export const usePokemonStore = defineStore('pokemon', {
             this.edited[name] = { ...prev, ...payload };
             safeLocalStorageSet('edited', this.edited);
         },
+
+        setFavorite(name, isFavorite) {
+            this.setEdit(name, { favorite: isFavorite });
+        },
+
+        toggleFavorite(name) {
+            const current = this.edited[name]?.favorite || false;
+            this.setEdit(name, { favorite: !current });
+        }
     },
 });
 

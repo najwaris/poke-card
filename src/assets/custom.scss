@@ -1,22 +1,167 @@
-// src/assets/custom.scss
+// Pokémon-inspired color palette
+$primary: #ff3e3e; // Vibrant Pokémon red
+$secondary: #2a75bb; // Classic Pokémon blue
+$success: #4dad5b; // Grass-type green
+$info: #58aaf6; // Water-type blue
+$warning: #f9cf30; // Pikachu yellow
+$danger: #eb6c6c; // Health bar red
+$light: #f8f9fa;
+$dark: #2d3748; // Dark navy
 
-// 1. Override Bootstrap variables BEFORE importing Bootstrap
-// Example theme colors
-$primary: #ff4757;  // Pokémon red
-$secondary: #1e90ff; // Pokémon blue
-$success: #2ed573;
-$info: #70a1ff;
-$warning: #ffa502;
-$danger: #ff6b81;
-$light: #f1f2f6;
-$dark: #2f3542;
+// Gradient colors
+$gradient-red: linear-gradient(135deg, $primary 0%, darken($primary, 15%) 100%);
+$gradient-blue: linear-gradient(135deg, $secondary 0%, darken($secondary, 15%) 100%);
 
-// Optional: Change font
-$font-family-sans-serif: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+// Custom variables
+$border-radius-xl: 1rem;
+$box-shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.1);
+$transition-base: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 
-// Optional: Card styles
-$card-border-radius: 1rem;
-$card-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+// Typography
+$font-family-sans-serif: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+$headings-font-weight: 700;
 
-// 2. Import Bootstrap's SCSS
+// Card styles
+$card-border-radius: $border-radius-xl;
+$card-box-shadow: $box-shadow-lg;
+$card-cap-bg: white;
+$card-bg: white;
+
+// Buttons
+$btn-border-radius: 0.5rem;
+$btn-font-weight: 600;
+$btn-box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+$btn-hover-box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+
+// Import Bootstrap
 @import "bootstrap/scss/bootstrap";
+
+// Custom styles
+body {
+    background-color: #f5f7fa;
+    position: relative;
+    min-height: 100vh;
+}
+
+// Pokéball watermark (more subtle)
+body::after {
+    content: '';
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    width: 60vmin;
+    height: 60vmin;
+    background: url('https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png') no-repeat center;
+    background-size: contain;
+    opacity: 0.03;
+    z-index: -1;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+}
+
+// Custom utility classes
+.gradient-red {
+    background: $gradient-red;
+}
+
+.gradient-blue {
+    background: $gradient-blue;
+}
+
+.text-shadow {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+// Enhanced card hover effect
+.card-hover {
+    transition: $transition-base;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    }
+}
+
+// Type badges
+.type-badge {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.35em 0.75em;
+    border-radius: 1rem;
+    color: white;
+
+    &.normal {
+        background-color: #a8a878;
+    }
+
+    &.fire {
+        background-color: #f08030;
+    }
+
+    &.water {
+        background-color: #6890f0;
+    }
+
+    &.electric {
+        background-color: #f8d030;
+    }
+
+    &.grass {
+        background-color: #78c850;
+    }
+
+    &.ice {
+        background-color: #98d8d8;
+    }
+
+    &.fighting {
+        background-color: #c03028;
+    }
+
+    &.poison {
+        background-color: #a040a0;
+    }
+
+    &.ground {
+        background-color: #e0c068;
+    }
+
+    &.flying {
+        background-color: #a890f0;
+    }
+
+    &.psychic {
+        background-color: #f85888;
+    }
+
+    &.bug {
+        background-color: #a8b820;
+    }
+
+    &.rock {
+        background-color: #b8a038;
+    }
+
+    &.ghost {
+        background-color: #705898;
+    }
+
+    &.dragon {
+        background-color: #7038f8;
+    }
+
+    &.dark {
+        background-color: #705848;
+    }
+
+    &.steel {
+        background-color: #b8b8d0;
+    }
+
+    &.fairy {
+        background-color: #ee99ac;
+    }
+}
