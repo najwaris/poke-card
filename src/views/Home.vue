@@ -5,7 +5,7 @@
         <main class="container py-5">
             <!-- Hero Section -->
             <div class="text-center mb-5 animate__animated animate__fadeIn">
-                <h1 class="display-4 fw-bold mb-3 text-primary text-shadow">
+                <h1 class="display-4 fw-bold mb-3 text-primary text-shadow pokedex-title">
                     Poké<span class="text-warning">Dex</span>
                 </h1>
                 <p class="lead text-muted mb-4">
@@ -285,4 +285,28 @@ function scrollToTop() {
 .animate__fadeInUp {
     --animate-duration: 0.5s;
 }
+
+.pokedex-title {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.pokedex-title:hover {
+  animation: jump 0.6s ease;
+}
+
+@keyframes jump {
+  0%   { transform: translateY(0); }
+  30%  { transform: translateY(-10px); }
+  50%  { transform: translateY(0); }
+  70%  { transform: translateY(-5px); }
+  100% { transform: translateY(0); }
+}
+
+.pokedex-title:hover .pokeball-icon {
+  transform: rotate(20deg);
+}
+
 </style>
