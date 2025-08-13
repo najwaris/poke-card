@@ -226,95 +226,104 @@ let editToastInstance = null;
 
 // Initialize toasts after component is mounted
 onMounted(async () => {
-  if (!store.list.length) await store.loadList();
-  const item = store.list.find((x) => x.name === name.value);
-  if (item) {
-    await store.loadDetails(item.name, item.url);
-  } else {
-    await store.loadDetails(name.value, `https://pokeapi.co/api/v2/pokemon/${name.value}`);
-  }
+    if (!store.list.length) await store.loadList();
+    const item = store.list.find((x) => x.name === name.value);
+    if (item) {
+        await store.loadDetails(item.name, item.url);
+    } else {
+        await store.loadDetails(name.value, `https://pokeapi.co/api/v2/pokemon/${name.value}`);
+    }
 
-  summary.value = merged.value?.summary || '';
-  favorite.value = !!merged.value?.favorite;
+    summary.value = merged.value?.summary || '';
+    favorite.value = !!merged.value?.favorite;
 
-  // Initialize toasts after the DOM is fully rendered
-  await nextTick();
-  initializeToasts();
+    // Initialize toasts after the DOM is fully rendered
+    await nextTick();
+    initializeToasts();
+
+    if (editModal.value) {
+        modalInstance = new Modal(editModal.value);
+        editModal.value.addEventListener('hide.bs.modal', () => {
+            // Reset form values when modal is closed without saving
+            summary.value = merged.value?.summary || '';
+            favorite.value = !!merged.value?.favorite;
+        });
+    }
 });
 
 function initializeToasts() {
-  if (favoriteToast.value) {
-    favoriteToastInstance = new Toast(favoriteToast.value, {
-      autohide: true,
-      delay: 3000
-    });
-  }
-  if (editToast.value) {
-    editToastInstance = new Toast(editToast.value, {
-      autohide: true,
-      delay: 3000
-    });
-  }
+    if (favoriteToast.value) {
+        favoriteToastInstance = new Toast(favoriteToast.value, {
+            autohide: true,
+            delay: 3000
+        });
+    }
+    if (editToast.value) {
+        editToastInstance = new Toast(editToast.value, {
+            autohide: true,
+            delay: 3000
+        });
+    }
 }
 
 function capitalizeFirstLetter(string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
+    return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
 function formatStatName(stat) {
-  const names = {
-    'hp': 'HP',
-    'attack': 'Attack',
-    'defense': 'Defense',
-    'special-attack': 'Sp. Atk',
-    'special-defense': 'Sp. Def',
-    'speed': 'Speed'
-  };
-  return names[stat] || stat;
+    const names = {
+        'hp': 'HP',
+        'attack': 'Attack',
+        'defense': 'Defense',
+        'special-attack': 'Sp. Atk',
+        'special-defense': 'Sp. Def',
+        'speed': 'Speed'
+    };
+    return names[stat] || stat;
 }
 
 function toggleFavorite() {
-  favorite.value = !favorite.value;
-  saveFavorite();
+    favorite.value = !favorite.value;
+    saveFavorite();
 }
 
 function saveFavorite() {
-  store.setEdit(name.value, { 
-    summary: summary.value, 
-    favorite: favorite.value 
-  });
-  
-  // Set toast message based on favorite status
-  if (favorite.value) {
-    favoriteToastMessage.value = 'Added to favorites!';
-    favoriteToastClass.value = 'bg-danger';
-    favoriteToastIcon.value = 'bi-heart-fill';
-  } else {
-    favoriteToastMessage.value = 'Removed from favorites';
-    favoriteToastClass.value = 'bg-secondary';
-    favoriteToastIcon.value = 'bi-heart';
-  }
-  
-  // Show toast after ensuring it's initialized
-  nextTick(() => {
-    if (favoriteToastInstance) {
-      favoriteToastInstance.show();
+    store.setEdit(name.value, {
+        summary: summary.value,
+        favorite: favorite.value
+    });
+
+    // Set toast message based on favorite status
+    if (favorite.value) {
+        favoriteToastMessage.value = 'Added to favorites!';
+        favoriteToastClass.value = 'bg-danger';
+        favoriteToastIcon.value = 'bi-heart-fill';
+    } else {
+        favoriteToastMessage.value = 'Removed from favorites';
+        favoriteToastClass.value = 'bg-secondary';
+        favoriteToastIcon.value = 'bi-heart';
     }
-  });
+
+    // Show toast after ensuring it's initialized
+    nextTick(() => {
+        if (favoriteToastInstance) {
+            favoriteToastInstance.show();
+        }
+    });
 }
 
 function saveChanges() {
-  store.setEdit(name.value, { 
-    summary: summary.value, 
-    favorite: favorite.value 
-  });
-  
-  // Show edit toast after ensuring it's initialized
-  nextTick(() => {
-    if (editToastInstance) {
-      editToastInstance.show();
-    }
-  });
+    store.setEdit(name.value, {
+        summary: summary.value,
+        favorite: favorite.value
+    });
+
+    // Show edit toast after ensuring it's initialized
+    nextTick(() => {
+        if (editToastInstance) {
+            editToastInstance.show();
+        }
+    });
 }
 </script>
 
