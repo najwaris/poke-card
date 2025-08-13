@@ -11,7 +11,7 @@ A small, responsive Pokédex web app built for a coding challenge. It fetches th
 - Search by name (substring, case‑insensitive)
 - Responsive card grid with artwork, brief info, type badges
 - Detail page: artwork, stats, abilities, moves, types
-- Edit modal (summary & favorite) — stored in Pinia and persisted
+- Edit modal (summary & favorite) stored in Pinia and persisted
 - Loaders/spinners and graceful error handling
 
 ## 🧰 Tech
