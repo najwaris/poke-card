@@ -1,0 +1,22 @@
+// src/assets/custom.scss
+
+// 1. Override Bootstrap variables BEFORE importing Bootstrap
+// Example theme colors
+$primary: #ff4757;  // Pokémon red
+$secondary: #1e90ff; // Pokémon blue
+$success: #2ed573;
+$info: #70a1ff;
+$warning: #ffa502;
+$danger: #ff6b81;
+$light: #f1f2f6;
+$dark: #2f3542;
+
+// Optional: Change font
+$font-family-sans-serif: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+
+// Optional: Card styles
+$card-border-radius: 1rem;
+$card-box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+// 2. Import Bootstrap's SCSS
+@import "bootstrap/scss/bootstrap";
