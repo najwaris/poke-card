@@ -2,7 +2,7 @@
 
 A small, responsive Pokédex web app built for a coding challenge. It fetches the first **100** Pokémon from the public [PokeAPI](https://pokeapi.co/), supports searching by name, shows a gorgeous card grid, and provides a detail page with editable info stored in **Pinia** (persisted to `localStorage`).
 
-## ✨ Features
+## Features
 - Vue 3 (Composition API) + Vite
 - Pinia state management
 - Vue Router (hash history for static hosting)
@@ -14,7 +14,7 @@ A small, responsive Pokédex web app built for a coding challenge. It fetches th
 - Edit modal (summary & favorite) stored in Pinia and persisted
 - Loaders/spinners and graceful error handling
 
-## 🧰 Tech
+## Tech
 - Vue 3, JavaScript (no TypeScript)
 - Pinia
 - Vue Router
